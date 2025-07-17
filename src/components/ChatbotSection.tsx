@@ -20,13 +20,13 @@ const ChatbotSection = () => {
       <div className="absolute inset-0">
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-bl from-blue-500/[0.03] to-transparent rounded-full blur-3xl animate-float-slow"></div>
         <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-gradient-to-tr from-purple-500/[0.02] to-transparent rounded-full blur-3xl animate-float-reverse"></div>
-        
+
         {/* Floating chat bubbles */}
         <div className="absolute inset-0">
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-4 h-4 bg-white/5 rounded-full animate-float-particle"
+              className="absolute w-4 h-4 bg-white/5 rounded-full animate-float-particle hover:scale-150 transition-transform duration-500"
               style={{
                 left: `${15 + Math.random() * 70}%`,
                 top: `${20 + Math.random() * 60}%`,
@@ -42,11 +42,11 @@ const ChatbotSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Content */}
           <div>
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/[0.05] backdrop-blur-sm border border-white/[0.08] text-sm text-gray-400 mb-8">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/[0.05] backdrop-blur-sm border border-white/[0.08] text-sm text-gray-400 mb-8 hover:scale-105 transition-transform duration-300">
               <Bot size={16} className="mr-2 text-blue-400" />
               AI Chatbot Solutions
             </div>
-            
+
             <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-silver via-white to-silver bg-clip-text text-transparent">
                 Conversations that
@@ -56,7 +56,7 @@ const ChatbotSection = () => {
                 convert customers
               </span>
             </h2>
-            
+
             <p className="text-xl text-silver/70 mb-8 font-light leading-relaxed">
               Deploy intelligent chatbots that understand context, learn from interactions, 
               and provide human-like support across all your channels.
@@ -67,7 +67,7 @@ const ChatbotSection = () => {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="group p-4 bg-silver/[0.02] backdrop-blur-sm border border-silver/[0.05] rounded-xl hover:border-silver/[0.1] hover:bg-silver/[0.03] transition-all duration-300"
+                  className="group p-5 bg-silver/[0.02] backdrop-blur-sm border border-silver/[0.08] rounded-xl hover:border-silver hover:bg-silver/[0.06] transition-all duration-300 hover:scale-105 shadow-md hover:shadow-silver/20"
                 >
                   <div className="p-3 bg-gradient-to-br from-silver/[0.1] to-silver/[0.05] border border-silver/[0.1] rounded-lg mb-3 w-fit group-hover:scale-110 transition-transform duration-300">
                     <feature.icon size={20} className="text-silver" />
@@ -86,7 +86,7 @@ const ChatbotSection = () => {
 
           {/* Right Side - Chat Demo */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-silver/[0.08] to-silver/[0.02] backdrop-blur-xl border border-silver/[0.1] rounded-2xl p-6 shadow-2xl">
+            <div className="bg-gradient-to-br from-silver/[0.08] to-silver/[0.02] backdrop-blur-xl border border-silver/[0.1] rounded-2xl p-6 shadow-2xl hover:shadow-silver/30 transition-shadow duration-300">
               {/* Chat Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-silver/[0.1]">
                 <div className="flex items-center">
@@ -96,7 +96,7 @@ const ChatbotSection = () => {
                   <div>
                     <h4 className="font-semibold text-silver">GoRan AI Assistant</h4>
                     <p className="text-xs text-green-400 flex items-center">
-                      <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                      <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
                       Online
                     </p>
                   </div>
@@ -108,7 +108,7 @@ const ChatbotSection = () => {
               </div>
 
               {/* Chat Messages */}
-              <div className="space-y-4 mb-6 max-h-80 overflow-y-auto">
+              <div className="space-y-4 mb-6 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-silver/30 scrollbar-track-transparent">
                 {messages.map((message, index) => (
                   <div
                     key={index}
@@ -131,7 +131,7 @@ const ChatbotSection = () => {
                         message.type === 'user'
                           ? 'bg-gradient-to-r from-silver/[0.15] to-silver/[0.1] text-silver'
                           : 'bg-gradient-to-r from-silver/[0.05] to-silver/[0.02] text-silver/80 border border-silver/[0.05]'
-                      }`}>
+                      } hover:scale-[1.02] transition-transform duration-300`}>
                         <p className="text-sm font-light">{message.text}</p>
                       </div>
                     </div>

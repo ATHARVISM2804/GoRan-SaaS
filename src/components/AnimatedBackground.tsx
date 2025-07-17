@@ -1,66 +1,69 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
+
+declare global {
+  interface Window {
+    VANTA: any;
+  }
+}
 
 const AnimatedBackground = () => {
-  const vantaRef = useRef(null);
-  const [vantaEffect, setVantaEffect] = useState(null);
-
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const vantaRef = useRef<HTMLDivElement | null>(null);
+  const [vantaEffect, setVantaEffect] = useState<any>(null);
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
-    let effectInstance: any = null;
+    if (!vantaRef.current || isMobile) return;
 
     const loadVanta = async () => {
-      const THREE = await import('three');
-      const VANTA = await import('vanta/dist/vanta.net.min');
+      const THREE = await import("three");
 
-      if (!effectInstance) {
-        effectInstance = VANTA.default({
-          el: vantaRef.current,
-          THREE,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          scale: 1.0,
-          scaleMobile: 1.0,
+      const script = document.createElement("script");
+      script.src = "/vantaGlobe.min.js"; // must be inside /public
+      script.async = true;
 
-          // ✨ Styling
-          color: 0x66fcf1,
-          backgroundColor: 0x0b0c10,
-          points: isMobile ? 6.0 : 12.0,
-          maxDistance: isMobile ? 15.0 : 25.0,
-          spacing: isMobile ? 30.0 : 20.0,
-          showDots: !isMobile,
+      script.onload = () => {
+        if (!vantaEffect && window.VANTA?.GLOBE) {
+          const effect = window.VANTA.GLOBE({
+            el: vantaRef.current,
+            THREE: THREE,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            scale: 1.0,
+            scaleMobile: 1.0,
+            color: 0x64ffda,
+            color2: 0x00c3ff,
+            backgroundColor: 0x000000,
+            size: 1.2,
+          });
+          setVantaEffect(effect);
+        }
+      };
 
-          // ✅ Snappy Movement
-          mouseCoeffX: 1.0,
-          mouseCoeffY: 1.0,
-        });
-
-        setVantaEffect(effectInstance);
-      }
+      document.body.appendChild(script);
     };
 
     loadVanta();
 
     return () => {
-      if (effectInstance) effectInstance.destroy?.();
+      if (vantaEffect) vantaEffect.destroy?.();
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <div
       ref={vantaRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0"
-    >
-      {/* Optional Glassy Glow Layer */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-white/0 to-cyan-300/5 mix-blend-soft-light" />
-    </div>
+      className="fixed inset-0 w-full h-full z-0 pointer-events-none"
+    />
   );
 };
 
 export default AnimatedBackground;
+
+
+
 
 
 

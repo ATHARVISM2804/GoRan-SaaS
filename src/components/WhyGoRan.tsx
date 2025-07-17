@@ -1,5 +1,6 @@
 import React from 'react';
 import { Zap, Brain, Cog, Shield, Users, TrendingUp, CheckCircle } from 'lucide-react';
+import GlareHover from './GlareHover';
 
 const WhyGoRan = () => {
   const features = [
@@ -38,7 +39,7 @@ const WhyGoRan = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-gradient-to-br from-white/[0.025] to-transparent rounded-full blur-3xl animate-float-slow"></div>
         <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-gradient-to-tl from-white/[0.02] to-transparent rounded-full blur-3xl animate-float-reverse"></div>
-        
+
         {/* Animated connecting lines */}
         <div className="absolute inset-0">
           {[...Array(3)].map((_, i) => (
@@ -79,63 +80,60 @@ const WhyGoRan = () => {
         {/* Main Features */}
         <div className="grid lg:grid-cols-3 gap-8 mb-24">
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group relative p-8 lg:p-10 bg-gradient-to-br from-silver/[0.03] to-silver/[0.01] backdrop-blur-sm rounded-2xl border border-silver/[0.08] hover:border-silver/[0.15] transition-all duration-500"
-            >
-              {/* Gradient Border Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-silver/[0.02] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div className="relative z-10">
-                {/* Icon and Stats */}
-                <div className="flex items-start justify-between mb-8">
-                  <div className="p-4 bg-gradient-to-br from-silver/[0.1] to-silver/[0.05] border border-silver/[0.1] rounded-xl group-hover:scale-110 transition-transform duration-300">
-                    <feature.icon size={28} className="text-silver" />
-                  </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-silver via-white to-silver bg-clip-text text-transparent">
-                      {feature.stats}
+            <GlareHover key={index} glareColor="#ffffff" glareOpacity={0.1} glareAngle={-30} glareSize={300} transitionDuration={700}>
+              <div
+                className="group relative p-8 lg:p-10 bg-gradient-to-br from-silver/[0.03] to-silver/[0.01] backdrop-blur-sm rounded-2xl border border-silver/[0.08] hover:border-silver/[0.15] transition-all duration-500 h-[380px] flex flex-col justify-between"
+              >
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="p-4 bg-gradient-to-br from-silver/[0.1] to-silver/[0.05] border border-silver/[0.1] rounded-xl group-hover:scale-110 transition-transform duration-300">
+                      <feature.icon size={28} className="text-silver" />
                     </div>
-                    <div className="text-xs text-silver/60 font-medium mt-1">
-                      {feature.metric}
+                    <div className="text-right">
+                      <div className="text-3xl font-bold bg-gradient-to-r from-silver via-white to-silver bg-clip-text text-transparent">
+                        {feature.stats}
+                      </div>
+                      <div className="text-xs text-silver/60 font-medium mt-1">
+                        {feature.metric}
+                      </div>
                     </div>
                   </div>
+
+                  <h3 className="text-2xl font-bold text-silver mb-4 group-hover:text-white transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-silver/70 leading-relaxed font-light">
+                    {feature.description}
+                  </p>
                 </div>
-
-                {/* Content */}
-                <h3 className="text-2xl font-bold text-silver mb-4 group-hover:text-white transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-silver/70 leading-relaxed font-light">
-                  {feature.description}
-                </p>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-
-              {/* Bottom Border Glow */}
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-silver/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div>
+            </GlareHover>
           ))}
         </div>
 
         {/* Additional Benefits */}
         <div className="grid md:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="group flex items-start p-6 bg-silver/[0.02] backdrop-blur-sm rounded-xl border border-silver/[0.05] hover:border-silver/[0.1] hover:bg-silver/[0.03] transition-all duration-300"
-            >
-              <div className="p-3 bg-silver/[0.05] border border-silver/[0.1] rounded-lg mr-4 group-hover:bg-silver/[0.08] transition-colors duration-300">
-                <benefit.icon size={20} className="text-silver" />
+            <GlareHover key={index} glareColor="#ffffff" glareOpacity={0.08} glareAngle={-30} glareSize={250} transitionDuration={600}>
+              <div
+                className="group flex flex-col justify-between h-[220px] p-6 bg-silver/[0.02] backdrop-blur-sm rounded-xl border border-silver/[0.05] hover:border-silver/[0.1] hover:bg-silver/[0.03] transition-all duration-300"
+              >
+                <div className="flex items-start mb-4">
+                  <div className="p-3 bg-silver/[0.05] border border-silver/[0.1] rounded-lg mr-4 group-hover:bg-silver/[0.08] transition-colors duration-300">
+                    <benefit.icon size={20} className="text-silver" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-silver mb-2 group-hover:text-white transition-colors duration-300">
+                      {benefit.title}
+                    </h4>
+                    <p className="text-sm text-silver/70 font-light leading-relaxed">
+                      {benefit.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-silver mb-2 group-hover:text-white transition-colors duration-300">
-                  {benefit.title}
-                </h4>
-                <p className="text-sm text-silver/70 font-light leading-relaxed">
-                  {benefit.description}
-                </p>
-              </div>
-            </div>
+            </GlareHover>
           ))}
         </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Play } from 'lucide-react';
-import AnimatedBackground from './AnimatedBackground';
+import AnimatedBackground from './AnimatedBackground'; // Uses the Vanta GLOBE effect
 import BlurText from './BlurText';
 
 const handleAnimationComplete = () => {
@@ -13,11 +13,11 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Vanta.NET Canvas Background */}
+      {/* Vanta.GLOBE Canvas Background */}
       <AnimatedBackground />
 
-      {/* Overlay gradient for contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90 z-10 pointer-events-none" />
+      {/* Optional soft gradient overlay for highlight (light contrast) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 z-10 pointer-events-none" />
 
       {/* Hero Content */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center pt-32">
@@ -98,6 +98,7 @@ const Hero = () => {
 };
 
 export default Hero;
+
 
 
 

@@ -66,3 +66,16 @@
     left: 100%;
   }
 }
+
+@keyframes glare {
+  0% {
+    transform: rotate(15deg) translateX(-100%);
+  }
+  100% {
+    transform: rotate(15deg) translateX(100%);
+  }
+}
+
+.animate-glare {
+  animation: glare 2.5s ease-in-out infinite;
+}
